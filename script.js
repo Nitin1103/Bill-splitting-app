@@ -13,8 +13,7 @@ const calculateBill = () => {
     let tipAmount = bill * tipPercent;
     let totalBill = bill + tipAmount;
     let pptotal = totalBill / noOfPpl;
-    pptotal = pptotal.toFixed(2);
-    perPersonTotal.innerText = '$' + pptotal;
+    perPersonTotal.innerText = `$${pptotal.toLocaleString('en-US')}`
 }
 
 // ** Splits the bill between more people **
@@ -26,7 +25,10 @@ const increasePeople = () => {
 
 // ** Splits the bill between fewer people **
 const decreasePeople = () => {
-    if (noOfPpl <= 1) return;
+    if (noOfPpl <= 1) {
+        alert("No. of people can't be less than 1!");
+        return;
+    }
     noOfPpl--;
     numberofPeople.innerText = noOfPpl;
     calculateBill();
